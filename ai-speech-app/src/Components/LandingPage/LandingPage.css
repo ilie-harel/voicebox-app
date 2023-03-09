@@ -1,0 +1,71 @@
+.LandingPage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.LandingPageHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 80px;
+  padding: 0 50px;
+  /* margin-bottom: 20px; */
+}
+
+.LandingPageHeader img {
+  width: 250px;
+}
+
+.LandingPageHeader a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 10px;
+  border-bottom: 2px solid #333;
+  /* border-radius: 10px; */
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.LandingPageHeader a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.landing_page_logo {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+}
+
+@media only screen and (max-width: 480px) {
+  .landing_page_logo img {
+    width: 180px;
+  }
+  
+  .LandingPageHeader{
+    padding: 0 10px;
+    margin: 0;
+  }
+
+  .LandingPageHeader a {
+    font-size: 13px;
+    width: 140px;
+    text-align: center;
+  }
+}

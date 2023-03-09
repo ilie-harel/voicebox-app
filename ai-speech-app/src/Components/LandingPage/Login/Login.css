@@ -1,0 +1,186 @@
+.Login_Container {
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 2;
+    box-shadow: 10px 10px 50px 1px rgba(0, 0, 0, 0.132);
+    border-radius: 40px 40px 40px 40px;
+    position: relative;
+
+}
+
+.Login_Container .Login {
+    display: flex;
+    width: 60vw;
+    margin: auto;
+    height: 80vh;
+}
+
+.Login_Container .Login>div {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 0 40px 40px 0;
+    box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
+
+}
+
+
+.googleLoginDiv {
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.googleLoginDivSmallScreen {
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+
+.Login_Container .Login>div form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.Login_Container .Login>div form input {
+    border: none;
+    outline: 1px solid #b9b9b9;
+    border-radius: 2px;
+    padding: 14px;
+    margin-bottom: 10px;
+    width: 80%;
+    font-size: 14px;
+}
+
+.Login_Container .Login>div form button {
+    width: 85%;
+    padding: 15px;
+    border: none;
+    background-color: var(--color2);
+    color: white;
+    margin-top: 20px;
+    font-weight: 750;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
+    -webkit-box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
+    -moz-box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
+}
+
+.Login_Container .Login>div form .link_to_register_in_login_form {
+    margin: 20px 0;
+    text-decoration: none;
+    color: #1c1c1c;
+}
+
+.Login_Container .Login>div form .link_to_register_in_login_form:hover {
+    text-decoration: underline;
+}
+
+.Login_Container .Login>div form .terms_login_form {
+    /* margin-top: 60px; */
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    color: gray;
+    font-size: 12px;
+}
+
+.Login_Container .Login .vacation_image_login {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.Login_Container .Login .vacation_image_login img {
+    border-radius: 40px 0 0 40px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form_container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .Login_Container .Login .vacation_image_login {
+        display: none;
+    }
+
+    .Login_Container .Login>div {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        text-align: center;
+        /* border-radius: 40px; */
+    }
+
+    .form_container>* {
+        font-size: 14px;
+    }
+
+    .Login_Container .Login>div form input {
+        /* margin: 3px; */
+    }
+
+
+
+    .Login_Container .Login>div form input {
+        /* padding: 10px; */
+    }
+
+    .Login_Container .Login>div form .link_to_register_in_login_form {
+        /* margin-top: 20px; */
+    }
+
+    .form_container h3 {
+        font-size: 20px;
+        margin-bottom: 60px ;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+    .Login_Container .Login {
+        /* width: max-content; */
+        height: max-content;
+
+    }
+
+    .form_container h3 {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .Login_Container .Login>div form input {
+        padding: 10px;
+    }
+
+    .Login_Container .Login>div form .terms_login_form {
+        position: relative;
+    }
+}

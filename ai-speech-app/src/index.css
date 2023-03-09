@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  overflow: hidden;
+
+}
+
+* {
+  --color1: #F0EEED;
+  --color2: #252525;
+  --color3:#0e4b3d;
+
+}

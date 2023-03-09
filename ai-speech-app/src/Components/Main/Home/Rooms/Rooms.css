@@ -1,0 +1,204 @@
+.Rooms {
+    width: 300px;
+    height: 100%;
+    background-color: var(--color2);
+    /* background-color: #b7b7b7; */
+    color: rgb(197, 197, 197);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+    z-index: 1;
+    /* border: 2px solid #343a40; */
+  }
+
+  .Rooms:hover   ::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
+  
+  .RoomsDiv {
+    width: 116%;
+    height: 80%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+  }
+  
+  .room {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 40px;
+    flex-shrink: 0;
+    margin: 3px 0 3px 10px;
+    padding: 2px 10px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    /* background-color: #2d31309c; */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: right;
+  }
+
+  .changeLanguageDiv{
+    width: 100%;
+  }
+
+  .changeLanguageDiv select{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #cacaca;
+    border: none;
+    cursor: pointer;
+  }
+
+  .room_icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .room_icons .chat_bubble_outlike_icon {
+    font-size: 20px;
+  }
+
+
+  .room_icons .delete_room_icon {
+    position: relative;
+    bottom: 1px;
+    font-size: 20px;
+    opacity: 0;
+  }
+  
+  .room:hover .delete_room_icon {
+    opacity: 1;
+  }
+  .delete_room_icon:hover{
+    opacity: 0;
+    color: white;
+  }
+
+  .room:hover{
+    background-color: #303030;
+  }
+  
+  .room.selected {
+    background-color: #383838;
+  }
+  
+  .AddBtnDiv {
+    height: 40px;
+    width: 100%;
+    border: 2px solid var(--color3);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .AddBtnDiv:hover {
+    background-color: var(--color3);
+  }
+  
+  .AddBtnDiv .not_hover {
+    display: none;
+  }
+  
+  .AddBtnDiv:hover .hover {
+    display: none;
+  }
+  
+  .AddBtnDiv:hover .not_hover {
+    display: block;
+  }
+  
+  .hover {
+    color: white;
+  }
+  
+  .not_hover {
+    color: white;
+  }
+
+  /* .nav_to_videos_btn {
+    margin-bottom: 20px;
+    color: rgb(201, 201, 201);
+  }
+  .nav_to_videos_btn:hover {
+    transition: 0.2s;
+    font-size: 17px;
+    margin-bottom: 18px;
+  } */
+
+ 
+  .LogoutBtnDiv {
+    height: 40px;
+    width: 100%;
+    border: 2px solid var(--color3);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .SettinsDiv{
+    width: 100%;
+  }
+  
+  .LogoutBtnDiv:hover {
+    background-color: var(--color3);
+  }
+  
+  .LogoutBtnDiv .not_hover {
+    display: none;
+  }
+  
+  .LogoutBtnDiv:hover .hover {
+    display: none;
+  }
+  
+  .LogoutBtnDiv:hover .not_hover {
+    display: block;
+  }
+  
+  .Rooms ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background: #5d5d5d;
+    visibility: hidden;    
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #888787;
+  }
+
+
+  /* @media screen and (max-width: 1100px) {
+    .Rooms{
+      display: none;
+    }
+  }
+   */
