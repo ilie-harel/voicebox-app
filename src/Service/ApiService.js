@@ -3,6 +3,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 
 function getToken() {
     const token = localStorage.getItem('ChatBoxToken');
+    console.log(token)
     return token
 }
 class ApiService {
