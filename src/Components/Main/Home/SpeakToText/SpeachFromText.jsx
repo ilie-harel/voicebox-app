@@ -37,6 +37,7 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
+        
 
     }, [finalTranscript, listening]);
 
@@ -45,6 +46,7 @@ function SpeechFromText() {
             top: chatBoxRef.current.scrollHeight,
             behavior: 'smooth'
         });
+        console.log(messages);
     }, [messages])
 
     useEffect(() => {
