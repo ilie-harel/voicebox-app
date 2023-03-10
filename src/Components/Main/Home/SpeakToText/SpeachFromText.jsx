@@ -13,7 +13,12 @@ import WelcomeComponent from "./WelcomeComponent/WelcomeComponent";
 import LinearProgress from '@mui/material/LinearProgress';
 import { toastsFunctions } from "../../../../helpers/toastsFunctions";
 import speakTextGoogle from "../../../../helpers/speakGoogle";
+import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill';
 import './SpeachFromText.css';
+
+const appId = '41459037-b511-4685-8a4b-e6a8510fd094';
+const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
+SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -27,7 +32,7 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
-  
+
 
     useEffect(() => {
 
@@ -37,7 +42,7 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
-        
+
 
     }, [finalTranscript, listening]);
 
