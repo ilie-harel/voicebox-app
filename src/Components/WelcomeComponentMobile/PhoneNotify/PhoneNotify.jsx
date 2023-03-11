@@ -25,6 +25,11 @@ export default function PhoneNotify() {
   };
 
   async function saveEmail(){
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!isValidEmail) {
+      toastsFunctions.toastError('Invalid email!');
+      return;
+    }
     const results = await apiService.getEmailNotify(email);
     if(results.status===200){
       handleClose()
@@ -42,11 +47,12 @@ export default function PhoneNotify() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableAutoFocus={true}
       >
         <Box sx={style}>
           <div className="PhoneNotifyModal">
             {/* <h2>Submit: </h2> <hr /> */}
-            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
+            <input pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             <button onClick={saveEmail}>Submit</button>
           </div>
         </Box>
