@@ -6,9 +6,15 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+    position: relative;
 }
 
 .WelcomeComponentLogo img {
     max-width: 90%;
     min-width: 300px;
+}
+
+.Signature{
+    position: absolute;
+    bottom: 0;
 }
