@@ -36,8 +36,6 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
-
-
     }, [finalTranscript, listening]);
 
     useEffect(() => {
@@ -45,14 +43,12 @@ function SpeechFromText() {
             top: chatBoxRef.current.scrollHeight,
             behavior: 'smooth'
         });
-        console.log(messages);
     }, [messages])
 
     useEffect(() => {
         setIsChangedRoom(true)
         if (roomSlice.id !== 0) {
             setMessages([])
-
             setLoadingData(true)
             apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res)).then(() => {
                 setLoadingData(false)

@@ -51,7 +51,6 @@ export default function PhoneNotify() {
       >
         <Box sx={style}>
           <div className="PhoneNotifyModal">
-            {/* <h2>Submit: </h2> <hr /> */}
             <input tabIndex="-1" pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             <button onClick={saveEmail}>Submit</button>
           </div>
