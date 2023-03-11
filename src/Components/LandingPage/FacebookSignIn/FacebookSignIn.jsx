@@ -23,7 +23,8 @@ export default function FacebookSignIn() {
 
     async function userRegister(user) {
         try {
-            const res = await apiService.googleAuth(user,notComputer);
+            // const res = await apiService.googleAuth(user,notComputer);
+            const res = await apiService.googleAuth(user);
             if (res.status === 200) {
                 console.log(res);
                 dispatch(loginRedux(res.data))

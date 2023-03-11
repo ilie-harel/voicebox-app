@@ -11,8 +11,7 @@ export default function WelcomeComponent() {
         <BackgroundCover />
       </div>
       <div className='Signature'>
-        <p style={{fontSize:'14px'}}>Created by: Ilie Beracha & Harel sarag
-        </p>
+        <p style={{fontSize:'14px'}}>Created by: Ilie Beracha & Harel sarag</p>
       </div>
     </div>
   );

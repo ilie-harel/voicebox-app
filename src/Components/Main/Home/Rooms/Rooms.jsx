@@ -29,6 +29,8 @@ export default function Rooms() {
   function logOut() {
     dispatch(logoutRedux());
     googleLogout();
+    // window.localStorage.removeItem('speechly-auth-token')
+    // window.localStorage.removeItem('speechly-device-id')
   }
 
   async function addRoom() {

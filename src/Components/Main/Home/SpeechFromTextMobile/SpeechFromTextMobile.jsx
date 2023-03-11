@@ -16,9 +16,10 @@ import './SpeechFromTextMobile.css';
 import WelcomeComponent from "../SpeakToText/WelcomeComponent/WelcomeComponent";
 import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill';
 
-const appId = '41459037-b511-4685-8a4b-e6a8510fd094';
-const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
-SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
+
+// const appId = '41459037-b511-4685-8a4b-e6a8510fd094';
+// const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
+// SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 
 function SpeechFromTextMobile() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();

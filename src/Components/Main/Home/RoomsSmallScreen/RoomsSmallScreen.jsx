@@ -38,6 +38,8 @@ export default function RoomsSmallScreen() {
     function logOut() {
         dispatch(setOverlay(false))
         dispatch(logoutRedux());
+        // window.localStorage.removeItem('speechly-auth-token')
+        // window.localStorage.removeItem('speechly-device-id')
     }
 
     async function addRoom() {
