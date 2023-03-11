@@ -3,8 +3,8 @@ import Main from "../src/Components/Main/Main"
 import LandingPage from './Components/LandingPage/LandingPage';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import WelcomeComponent from './Components/Main/Home/SpeakToText/WelcomeComponent/WelcomeComponent';
 import { toastsFunctions } from './helpers/toastsFunctions';
+import WelcomeComponentMobile from './Components/WelcomeComponentMobile/WelcomeComponentMobile';
 
 function App() {
   const authSlice = useSelector((state) => state.auth);
@@ -16,8 +16,7 @@ function App() {
     <div className="App">
       {smallScreen ?
       <>
-        <WelcomeComponent />
-        {toastsFunctions.toastInfo('Try VoiceBox from your computer')}
+        <WelcomeComponentMobile />
       </>
         
         :

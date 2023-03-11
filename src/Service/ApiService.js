@@ -35,6 +35,11 @@ class ApiService {
         return data;
     }
 
+    async getEmailNotify(email){
+        const results = await axios.post(`${BASE_URL}/users/notify?email=${email}`);
+        return results;
+    }
+
     // google users
 
     async googleAuth(user) {
