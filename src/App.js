@@ -15,22 +15,19 @@ function App() {
   return (
     <div className="App">
       {smallScreen ?
-      <>
-        <WelcomeComponentMobile />
-      </>
-        
+        <>
+          <WelcomeComponentMobile />
+        </>
         :
-        overlaySelector ?
-          <div id="overlay"></div>
-          : <></>}
-      <Routes>
-        {
-          authSlice ?
-            <Route path='*' element={<Main />}></Route>
-            :
-            <Route path='*' element={<LandingPage />}></Route>
-        }
-      </Routes>
+        <Routes>
+          {
+            authSlice ?
+              <Route path='*' element={<Main />}></Route>
+              :
+              <Route path='*' element={<LandingPage />}></Route>
+          }
+        </Routes>
+      }
     </div>
   );
 }
