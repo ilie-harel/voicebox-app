@@ -1,5 +1,5 @@
 import FacebookLogin from '@greatsumini/react-facebook-login';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginRedux } from '../../../app/authSlice';
@@ -10,14 +10,26 @@ export default function FacebookSignIn() {
     const dispatch = useDispatch()
     const Navigate = useNavigate()
     const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
+    const [notComputer, setNotComputer] = useState(false)
+
+    useEffect(() => {
+        const isMobile = () => {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return /android|webos|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
+        }
+
+        setNotComputer(isMobile());
+    }, [])
 
     async function userRegister(user) {
         try {
-            const res = await apiService.googleAuth(user);
+            const res = await apiService.googleAuth(user,notComputer);
             if (res.status === 200) {
                 console.log(res);
                 dispatch(loginRedux(res.data))
-                toastsFunctions.toastInfo("Head to the settings to choose a different language");
+                if (!notComputer) {
+                    toastsFunctions.toastInfo("Head to the settings to choose a different language");
+                }
                 Navigate("/");
             }
         } catch (e) {
@@ -63,7 +75,7 @@ export default function FacebookSignIn() {
                 fontSize: '14px',
                 border: 'none',
                 borderRadius: '4px',
-                width: smallScreen? '190px': '300px',
+                width: smallScreen ? '190px' : '300px',
                 margin: 0,
                 height: '40px',
                 display: 'flex',

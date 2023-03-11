@@ -23,6 +23,7 @@ export default function RoomsSmallScreen() {
     const overlaySelector = useSelector((state) => state.overlay)
     const authSlice = useSelector((state) => state.auth)
 
+
     useEffect(() => {
         apiService.getRoomsByUserId().then(async (res) => {
             setRooms(res);
@@ -61,23 +62,23 @@ export default function RoomsSmallScreen() {
         handleCloseMenu()
     }
 
-    async function changeLanguage(language) {
-        if (language === "") return;
-        try {
-            const results = await apiService.changeUserLanguage(language);
-            dispatch(loginRedux(results));
-            dispatch(changeRoomId(0))
-            dispatch(changeRoomName(''));
-            apiService.getRoomsByUserId().then(async (res) => {
-                setRooms(res);
-            });
-            setSelectedRoomId(null);
-            handleCloseMenu()
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
+    // async function changeLanguage(language) {
+    //     if (language === "") return;
+    //     try {
+    //         const results = await apiService.changeUserLanguage(language);
+    //         dispatch(loginRedux(results));
+    //         dispatch(changeRoomId(0))
+    //         dispatch(changeRoomName(''));
+    //         apiService.getRoomsByUserId().then(async (res) => {
+    //             setRooms(res);
+    //         });
+    //         setSelectedRoomId(null);
+    //         handleCloseMenu()
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
+        
     function openMenu() {
         setIsOpen(!isOpen)
         dispatch(setOverlay(!overlaySelector))

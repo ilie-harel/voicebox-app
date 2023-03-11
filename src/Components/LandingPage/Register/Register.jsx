@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "./Register.css";
@@ -38,21 +38,32 @@ export default function Register() {
   const [newLanguage, setNewLanguage] = useState();
   const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
 
- const languages = [
-  { label: "English", value: "en", img: USAFlag },
-  { label: "Hebrew", value: "he", img: israelFlag },
-  { label: "France", value: "fr", img: franceFlag },
-  { label: "Espaniol", value: "es", img: spainFlag },
-  { label: "Italian", value: "it", img: italyFlag },
-  { label: "Português", value: "pt", img: brazilFlag },
-  { label: "Arabic", value: "ar", img: saudi_arabiaFlag },
-  { label: "Russian", value: "ru", img: russiaFlag },
-  { label: "普通话", value: "cmn", img: chinaFlag },
-  { label: "Dutch", value: "nl", img: netherlandsFlag },
-  { label: "Polish", value: "pl", img: polandFlag },
-  { label: "Korean", value: "ko", img: koreaFlag },
-  { label: "Vietnamese", value: "vi", img: vientamFlag },
-];
+  const [notComputer, setNotComputer] = useState(false)
+
+  useEffect(() => {
+    const isMobile = () => {
+      const userAgent = navigator.userAgent.toLowerCase();
+      return /android|webos|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
+    }
+
+    setNotComputer(isMobile());
+  }, [])
+
+  const languages = [
+    { label: "English", value: "en", img: USAFlag },
+    { label: "Hebrew", value: "he", img: israelFlag },
+    { label: "France", value: "fr", img: franceFlag },
+    { label: "Espaniol", value: "es", img: spainFlag },
+    { label: "Italian", value: "it", img: italyFlag },
+    { label: "Português", value: "pt", img: brazilFlag },
+    { label: "Arabic", value: "ar", img: saudi_arabiaFlag },
+    { label: "Russian", value: "ru", img: russiaFlag },
+    { label: "普通话", value: "cmn", img: chinaFlag },
+    { label: "Dutch", value: "nl", img: netherlandsFlag },
+    { label: "Polish", value: "pl", img: polandFlag },
+    { label: "Korean", value: "ko", img: koreaFlag },
+    { label: "Vietnamese", value: "vi", img: vientamFlag },
+  ];
   async function userRegister(user) {
     user.language = newLanguage;
     try {
@@ -112,44 +123,49 @@ export default function Register() {
               {...register("password", { required: true, minLength: 4 })}
             />
             {errors.password ? <div style={{ display: "none" }}> {toastsFunctions.toastError('password min length 4')}</div> : <></>}
-            <Autocomplete
-              id="country-select-demo"
-              sx={{ width: '85%', marginTop: '10px' }}
-              options={languages}
-              autoHighlight
-              getOptionLabel={(option) => option.label}
-              onChange={(e, selectedOption) =>
-                setNewLanguage(selectedOption.value)
-              }
-              renderOption={(props, option) => (
-                <Box
-                  value={option.value}
-                  component="li"
-                  sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                  {...props}
-                >
-                  <img
-                    loading="lazy"
-                    width="20"
-                    src={option.img}
-                    // srcSet={option.img}
-                    alt={option.label}
-                  />
-                  {option.label}
-                </Box>
-              )}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Choose a language"
-                  inputProps={{
-                    ...params.inputProps,
-                    autoComplete: "new-password",
-                  }}
+            {
+              notComputer ?
+                <></>
+                :
+                <Autocomplete
+                  id="country-select-demo"
+                  sx={{ width: '85%', marginTop: '10px' }}
+                  options={languages}
+                  autoHighlight
+                  getOptionLabel={(option) => option.label}
+                  onChange={(e, selectedOption) =>
+                    setNewLanguage(selectedOption.value)
+                  }
+                  renderOption={(props, option) => (
+                    <Box
+                      value={option.value}
+                      component="li"
+                      sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                      {...props}
+                    >
+                      <img
+                        loading="lazy"
+                        width="20"
+                        src={option.img}
+                        // srcSet={option.img}
+                        alt={option.label}
+                      />
+                      {option.label}
+                    </Box>
+                  )}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Choose a language"
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: "new-password",
+                      }}
+                    />
+                  )}
                 />
-              )}
-            />
 
+            }
             <button className="submit_btn_register" type="submit">
               REGISTER
             </button>

@@ -42,8 +42,8 @@ class ApiService {
 
     // google users
 
-    async googleAuth(user) {
-        const results = await axios.post(`${BASE_URL}/google/auth`, user);
+    async googleAuth(user,notComputer) {
+        const results = await axios.post(`${BASE_URL}/google/auth?notComputer=${notComputer}`, user);
         return results;
     }
 
