@@ -3,6 +3,7 @@ import './WelcomeComponentMobile.css';
 import logoSmallScreen from './logo.png'
 import BackgroundCover from '../LandingPage/BackgroundCover/BackgroundCover';
 import PhoneNotify from './PhoneNotify/PhoneNotify';
+import { TypeAnimation } from 'react-type-animation';
 
 export default function WelcomeComponentMobile() {
 
@@ -13,7 +14,16 @@ export default function WelcomeComponentMobile() {
         <BackgroundCover />
       </div>
       <div className='WelcomeComponentMobilePhone'>
-        <p>We are currently working on bringing Voice Box AI to your phone. In the meantime, you can try it out on your computer.</p>
+        <TypeAnimation
+          sequence={['We are currently working on bringing Voice Box AI to your phone. In the meantime, you can try it out on your computer.']}
+          wrapper="p"
+          cursor={true}
+          speed={50}
+          className={'signInAnimation'}
+        />
+        {/* <p>We are currently working on bringing Voice Box AI to your phone. In the meantime, you can try it out on your computer.</p> */}
+      </div>
+      <div className='PhoneNotifyComponentDiv'>
         <PhoneNotify />
       </div>
     </div>
