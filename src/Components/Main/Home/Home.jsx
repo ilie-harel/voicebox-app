@@ -5,7 +5,7 @@ import SpeechFromText from './SpeakToText/SpeachFromText'
 import RoomsSmallScreen from './RoomsSmallScreen/RoomsSmallScreen';
 
 export default function Home() {
-  const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
+  const smallScreen = window.matchMedia("(max-width: 768px)").matches;
   
   return (
     <div className='Home'>

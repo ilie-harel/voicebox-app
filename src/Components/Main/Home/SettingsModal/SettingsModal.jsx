@@ -93,6 +93,7 @@ export default function SettingsModal(props) {
     } catch (e) {
       console.log(e);
     }
+
   }
 
   return (
@@ -226,7 +227,7 @@ export default function SettingsModal(props) {
                   minHeight: 40,
                   height: 40,
                 }}
-                
+
               >
                 <Radio checked={gender === "FEMALE"} onClick={(e) => setGender(e.target.value)} id="FEMALE" value="FEMALE" checkedIcon={<CheckCircleRoundedIcon />} />
                 <FemaleIcon variant="soft" size="sm" />

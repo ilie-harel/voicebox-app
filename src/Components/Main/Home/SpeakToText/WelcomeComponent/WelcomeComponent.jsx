@@ -1,6 +1,7 @@
 import React from 'react';
 import './WelcomeComponent.css';
-import logo from './logo_slogan.png'
+// import logo from './logo_slogan.png'
+import logo from './logo.png'
 import BackgroundCover from '../../../../LandingPage/BackgroundCover/BackgroundCover';
 export default function WelcomeComponent() {
   return (

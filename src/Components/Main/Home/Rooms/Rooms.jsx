@@ -3,7 +3,7 @@ import "./Rooms.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRedux, logoutRedux } from "../../../../app/authSlice";
+import { logoutRedux } from "../../../../app/authSlice";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { useState, useEffect } from "react";

@@ -12,7 +12,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MenuIcon from '@mui/icons-material/Menu';
 import './RoomsSmallScreen.css'
 import { setOverlay } from '../../../../app/overlaySlice';
-import { Link } from "react-router-dom"
 import SettingsModal from '../SettingsModal/SettingsModal';
 
 export default function RoomsSmallScreen() {
@@ -113,9 +112,9 @@ export default function RoomsSmallScreen() {
                             ))}
                         </div>
                        
-                        <div className="SettinsDiv">
+                        {/* <div className="SettinsDiv">
                             <SettingsModal setSelectedRoomId={setSelectedRoomId} setRooms={setRooms} />
-                        </div>
+                        </div> */}
                         <div onClick={logOut} className="LogoutBtnDiv">
                             <LogoutOutlinedIcon className="hover" />
                             <LogoutIcon className="not_hover" />
