@@ -90,6 +90,7 @@ function SpeechFromText() {
             if (res.status !== 200) {
                 toastsFunctions.toastError('Error occured')
             } else {
+                stopAudio()
                 const reply = await res.json();
                 speakTextGoogle(reply, setAudioSource)
                 resetTranscript();
