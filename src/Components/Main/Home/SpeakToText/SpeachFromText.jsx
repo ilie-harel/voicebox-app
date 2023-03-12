@@ -123,7 +123,7 @@ function SpeechFromText() {
     }
 
     return (
-        <div className={authSlice.language === 'he-IL' || authSlice.language === 'ar' ? "SpeachFromText directionRtl" : "SpeachFromText directionLtr"}>
+        <div className={authSlice.language === 'he' || authSlice.language === 'ar' ? "SpeachFromText directionRtl" : "SpeachFromText directionLtr"}>
             <div className="chatDiv">
                 <div ref={chatBoxRef} className="chat">
                     {roomSlice.id == 0 ?
