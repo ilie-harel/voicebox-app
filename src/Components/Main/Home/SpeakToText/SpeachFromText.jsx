@@ -40,6 +40,7 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
+    // const [stopped,setStopped]= useState(false)
     
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
@@ -48,7 +49,8 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
-    }, [finalTranscript, listening]);
+
+    }, [finalTranscript]);
 
     useEffect(() => {
         chatBoxRef.current.scroll({
@@ -73,6 +75,12 @@ function SpeechFromText() {
     }, [roomSlice.id])
 
     async function startListening() {
+
+            if(listening && transcript){
+                SpeechRecognition.stopListening()
+                return;
+            }
+
         if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
             dispatch(changeRoomId(addRoom.insertId))
@@ -81,6 +89,7 @@ function SpeechFromText() {
     }
 
     async function stopListening() {
+
         setIsChangedRoom(false)
         setLoading(true)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
@@ -111,9 +120,14 @@ function SpeechFromText() {
     }
 
     function stopAudio() {
+        
         if (audioSource !== null) {
             audioSource.stop();
         }
+ 
+            setIsChangedRoom(true)
+            setMessages([...messages])
+
         console.log(audioSource);
     }
 
@@ -194,10 +208,15 @@ function SpeechFromText() {
                         {listening ?
                             <img src={EqGif} />
                             :
-                            <MicIcon fontSize="large" sx={{ color: "white" }} />
+                            <MicIcon fontSize="large" sx={{ color: "white" }}  />
                         }
                     </div>
+
+                    {!listening ? 
                     <div className="cancel_record" onClick={() => stopAudio()}><CancelIcon fontSize="large" /></div>
+                    : 
+                    <div className="cancel_record" ><CancelIcon style={{color: "gray"}} fontSize="large" /></div>
+                    }
                 </div>
             </div>
         </div >
