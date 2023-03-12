@@ -4,6 +4,7 @@ import logoSmallScreen from './logo.png'
 import BackgroundCover from '../LandingPage/BackgroundCover/BackgroundCover';
 import PhoneNotify from './PhoneNotify/PhoneNotify';
 import { TypeAnimation } from 'react-type-animation';
+import SpeechToTextAzure from '../Main/Home/SpeechFromTextMobile/SpeechFromTextMobile';
 
 export default function WelcomeComponentMobile() {
 

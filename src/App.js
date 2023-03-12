@@ -3,14 +3,13 @@ import Main from "../src/Components/Main/Main"
 import LandingPage from './Components/LandingPage/LandingPage';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { toastsFunctions } from './helpers/toastsFunctions';
 import WelcomeComponentMobile from './Components/WelcomeComponentMobile/WelcomeComponentMobile';
 import { useEffect, useState } from 'react';
 
 function App() {
   const authSlice = useSelector((state) => state.auth);
-  const overlaySelector = useSelector((state) => state.overlay);
-  const smallScreen = window.matchMedia("(max-width: 768px)").matches;
+  // const overlaySelector = useSelector((state) => state.overlay);
+  // const smallScreen = window.matchMedia("(max-width: 768px)").matches;
   const [notComputer, setNotComputer] = useState(false)
 
   useEffect(() => {
@@ -20,6 +19,8 @@ function App() {
     }
 
     setNotComputer(isMobile());
+    // const a = apiService.azure()
+    // console.log(a);
   }, [])
 
   return (
@@ -38,6 +39,7 @@ function App() {
           }
         </Routes>
       }
+
     </div>
   );
 }

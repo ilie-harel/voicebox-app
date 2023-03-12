@@ -14,7 +14,20 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { toastsFunctions } from "../../../../helpers/toastsFunctions";
 import speakTextGoogle from "../../../../helpers/speakGoogle";
 import './SpeachFromText.css';
+import createSpeechServicesPonyfill from 'web-speech-cognitive-services';
 
+
+
+const SUBSCRIPTION_KEY = process.env.REACT_APP_SUBSCRIPTION_KEY;
+const REGION = process.env.REACT_APP_REGION;
+
+const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfill({
+    credentials: {
+        region: REGION,
+        subscriptionKey: SUBSCRIPTION_KEY,
+    }
+});
+SpeechRecognition.applyPolyfill(AzureSpeechRecognition);
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -28,6 +41,8 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
+   
+
 
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {

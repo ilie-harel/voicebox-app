@@ -35,7 +35,7 @@ class ApiService {
         return data;
     }
 
-    async getEmailNotify(email){
+    async getEmailNotify(email) {
         const results = await axios.post(`${BASE_URL}/users/notify?email=${email}`);
         return results;
     }
@@ -161,6 +161,35 @@ class ApiService {
         });
         return await response.json()
     }
+
+    // azure test
+
+    // async azure() {
+    //     const subscriptionKey = '2d02f930d467482688cf41aa421a07b9';
+    //     const region = 'eastus';
+
+    //     const url = `https://${region}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`;
+
+    //     fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Ocp-Apim-Subscription-Key': subscriptionKey,
+    //             'Content-type': 'application/x-www-form-urlencoded',
+    //         },
+    //     })
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 console.log('Subscription key is valid.');
+    //             } else {
+    //                 console.log('Subscription key is not valid.');
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Error validating subscription key:', error);
+    //         });
+
+    // }
+    
 
 }
 
