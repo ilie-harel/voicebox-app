@@ -16,16 +16,16 @@ import './SpeachFromText.css';
 import createSpeechServicesPonyfill from 'web-speech-cognitive-services';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
-const SUBSCRIPTION_KEY = process.env.REACT_APP_SUBSCRIPTION_KEY;
-const REGION = process.env.REACT_APP_REGION;
+// const SUBSCRIPTION_KEY = process.env.REACT_APP_SUBSCRIPTION_KEY;
+// const REGION = process.env.REACT_APP_REGION;
 
-const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfill({
-    credentials: {
-        region: REGION,
-        subscriptionKey: SUBSCRIPTION_KEY,
-    }
-});
-SpeechRecognition.applyPolyfill(AzureSpeechRecognition);
+// const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfill({
+//     credentials: {
+//         region: REGION,
+//         subscriptionKey: SUBSCRIPTION_KEY,
+//     }
+// });
+// SpeechRecognition.applyPolyfill(AzureSpeechRecognition);
 
 
 function SpeechFromText() {

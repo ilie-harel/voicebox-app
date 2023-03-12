@@ -49,19 +49,20 @@ export default function Register() {
     setNotComputer(isMobile());
   }, [])
 
-  const languages = [
-    { label: "English", value: "en-US", img: USAFlag },
-    { label: "Hebrew", value: "he-IL", img: israelFlag },
-    { label: "France", value: "fr-FR", img: franceFlag },
-    { label: "Espaniol", value: "es-ES", img: spainFlag },
-    { label: "Italian", value: "it-IT", img: italyFlag },
-    { label: "Português", value: "pt-BR", img: brazilFlag },
-    { label: "Russian", value: "ru-RU", img: russiaFlag },
-    { label: "Dutch", value: "nl-NL", img: netherlandsFlag },
-    { label: "Polish", value: "pl-PL", img: polandFlag },
-    { label: "Korean", value: "ko-KR", img: koreaFlag },
-    { label: "Vietnamese", value: "vi-VN", img: vientamFlag },
-  ];
+ 
+const languages = [
+  { label: "English", value: "en", img: USAFlag },
+  { label: "Hebrew", value: "he", img: israelFlag },
+  { label: "France", value: "fr", img: franceFlag },
+  { label: "Espaniol", value: "es", img: spainFlag },
+  { label: "Italian", value: "it", img: italyFlag },
+  { label: "Português", value: "pt", img: brazilFlag },
+  { label: "Russian", value: "ru", img: russiaFlag },
+  { label: "Dutch", value: "nl", img: netherlandsFlag },
+  { label: "Polish", value: "pl", img: polandFlag },
+  { label: "Korean", value: "ko", img: koreaFlag },
+  { label: "Vietnamese", value: "vi", img: vientamFlag },
+];
 
   async function userRegister(user) {
     user.language = newLanguage;
