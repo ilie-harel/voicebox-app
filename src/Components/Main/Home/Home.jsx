@@ -13,7 +13,7 @@ export default function Home() {
       const userAgent = navigator.userAgent.toLowerCase();
       return /android|webos|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
     }
-
+    console.log(123);
     setNotComputer(isMobile());
   }, [])
 
