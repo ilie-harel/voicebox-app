@@ -123,49 +123,46 @@ export default function Register() {
               {...register("password", { required: true, minLength: 4 })}
             />
             {errors.password ? <div style={{ display: "none" }}> {toastsFunctions.toastError('password min length 4')}</div> : <></>}
-            {
-              notComputer ?
-                <></>
-                :
-                <Autocomplete
-                  id="country-select-demo"
-                  sx={{ width: '85%', marginTop: '10px' }}
-                  options={languages}
-                  autoHighlight
-                  getOptionLabel={(option) => option.label}
-                  onChange={(e, selectedOption) =>
-                    setNewLanguage(selectedOption.value)
-                  }
-                  renderOption={(props, option) => (
-                    <Box
-                      value={option.value}
-                      component="li"
-                      sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                      {...props}
-                    >
-                      <img
-                        loading="lazy"
-                        width="20"
-                        src={option.img}
-                        // srcSet={option.img}
-                        alt={option.label}
-                      />
-                      {option.label}
-                    </Box>
-                  )}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Choose a language"
-                      inputProps={{
-                        ...params.inputProps,
-                        autoComplete: "new-password",
-                      }}
-                    />
-                  )}
-                />
 
-            }
+            <Autocomplete
+              id="country-select-demo"
+              sx={{ width: '85%', marginTop: '10px' }}
+              options={languages}
+              autoHighlight
+              getOptionLabel={(option) => option.label}
+              onChange={(e, selectedOption) =>
+                setNewLanguage(selectedOption.value)
+              }
+              renderOption={(props, option) => (
+                <Box
+                  value={option.value}
+                  component="li"
+                  sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                  {...props}
+                >
+                  <img
+                    loading="lazy"
+                    width="20"
+                    src={option.img}
+                    // srcSet={option.img}
+                    alt={option.label}
+                  />
+                  {option.label}
+                </Box>
+              )}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Choose a language"
+                  inputProps={{
+                    ...params.inputProps,
+                    autoComplete: "new-password",
+                  }}
+                />
+              )}
+            />
+
+
             <button className="submit_btn_register" type="submit">
               REGISTER
             </button>

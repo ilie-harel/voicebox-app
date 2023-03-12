@@ -38,8 +38,6 @@ export default function RoomsSmallScreen() {
     function logOut() {
         dispatch(setOverlay(false))
         dispatch(logoutRedux());
-        // window.localStorage.removeItem('speechly-auth-token')
-        // window.localStorage.removeItem('speechly-device-id')
     }
 
     async function addRoom() {
@@ -64,22 +62,22 @@ export default function RoomsSmallScreen() {
         handleCloseMenu()
     }
 
-    // async function changeLanguage(language) {
-    //     if (language === "") return;
-    //     try {
-    //         const results = await apiService.changeUserLanguage(language);
-    //         dispatch(loginRedux(results));
-    //         dispatch(changeRoomId(0))
-    //         dispatch(changeRoomName(''));
-    //         apiService.getRoomsByUserId().then(async (res) => {
-    //             setRooms(res);
-    //         });
-    //         setSelectedRoomId(null);
-    //         handleCloseMenu()
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
+    async function changeLanguage(language) {
+        if (language === "") return;
+        try {
+            const results = await apiService.changeUserLanguage(language);
+            dispatch(loginRedux(results));
+            dispatch(changeRoomId(0))
+            dispatch(changeRoomName(''));
+            apiService.getRoomsByUserId().then(async (res) => {
+                setRooms(res);
+            });
+            setSelectedRoomId(null);
+            handleCloseMenu()
+        } catch (e) {
+            console.log(e);
+        }
+    }
         
     function openMenu() {
         setIsOpen(!isOpen)
@@ -115,9 +113,9 @@ export default function RoomsSmallScreen() {
                             ))}
                         </div>
                        
-                        {/* <div className="SettinsDiv">
+                        <div className="SettinsDiv">
                             <SettingsModal setSelectedRoomId={setSelectedRoomId} setRooms={setRooms} />
-                        </div> */}
+                        </div>
                         <div onClick={logOut} className="LogoutBtnDiv">
                             <LogoutOutlinedIcon className="hover" />
                             <LogoutIcon className="not_hover" />
