@@ -40,7 +40,8 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
-    
+    const [disableSpeak, setDisableSpeak] = useState(false);
+
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
             return <span>Your Browser doesnt support speech to text</span>
@@ -76,12 +77,15 @@ function SpeechFromText() {
 
 
     async function startListening() {
+        if(disableSpeak){
+            console.log("cannot speak while waiting to answer");
+            return;
+        }
         stopAudio();
         if(listening){
                 SpeechRecognition.stopListening();
                 return;
             }
-            
 
         if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
@@ -92,6 +96,7 @@ function SpeechFromText() {
 
     async function stopListening() {
         if(!finalTranscript) return;
+        setDisableSpeak(true)
         setIsChangedRoom(false)
         setLoading(true)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
@@ -120,6 +125,7 @@ function SpeechFromText() {
             setIsChangedRoom(false)
             console.log('No roomId');
         }
+        setDisableSpeak(false);
     }
 
     function stopAudio() {
