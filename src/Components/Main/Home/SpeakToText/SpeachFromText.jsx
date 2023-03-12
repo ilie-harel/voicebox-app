@@ -40,7 +40,7 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
             return <span>Your Browser doesnt support speech to text</span>
@@ -48,7 +48,7 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
-        
+
     }, [finalTranscript, listening]);
 
     useEffect(() => {
@@ -83,6 +83,7 @@ function SpeechFromText() {
             }
             
 
+    async function startListening() {
         if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
             dispatch(changeRoomId(addRoom.insertId))
@@ -97,10 +98,12 @@ function SpeechFromText() {
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
         if (roomSlice.id) {
+
             const res = await apiService.sendMessageToChatGPT({ message: transcript, room: roomSlice.id });
             if (res.status !== 200) {
                 toastsFunctions.toastError('Error occured')
             } else {
+                stopAudio()
                 const reply = await res.json();
                 speakTextGoogle(reply, setAudioSource)
                 resetTranscript();
@@ -112,6 +115,7 @@ function SpeechFromText() {
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
                     setLoading(false)
+
                 } catch (e) {
                     alert(e)
                 }
@@ -123,14 +127,9 @@ function SpeechFromText() {
     }
 
     function stopAudio() {
-        
         if (audioSource !== null) {
             audioSource.stop();
         }
- 
-            setIsChangedRoom(true)
-            setMessages([...messages])
-
         console.log(audioSource);
     }
 
@@ -211,15 +210,10 @@ function SpeechFromText() {
                         {listening ?
                             <img src={EqGif} />
                             :
-                            <MicIcon fontSize="large" sx={{ color: "white" }}  />
+                            <MicIcon fontSize="large" sx={{ color: "white" }} />
                         }
                     </div>
-
-                    {!listening ? 
                     <div className="cancel_record" onClick={() => stopAudio()}><CancelIcon fontSize="large" /></div>
-                    : 
-                    <div className="cancel_record" ><CancelIcon style={{color: "gray"}} fontSize="large" /></div>
-                    }
                 </div>
             </div>
         </div >
