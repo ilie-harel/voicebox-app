@@ -46,7 +46,7 @@ function SpeechFromText() {
         if (!browserSupportsSpeechRecognition) {
             return <span>Your Browser doesnt support speech to text</span>
         }
-        if (transcript ) {
+        if (transcript && !listening) {
             stopListening();
         }
 
@@ -78,6 +78,7 @@ function SpeechFromText() {
 
             if(listening){
                 SpeechRecognition.stopListening()
+                return;
             }
 
         if (roomSlice.id === 0) {
