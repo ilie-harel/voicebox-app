@@ -4,8 +4,13 @@
     margin: 0 auto;
 }
 
+.HomeMobile {
+    height: 85vh;
+
+}
+
 @media only screen and (max-width: 1000px) {
-    .Home{
+    .Home {
         justify-content: center;
     }
 }
