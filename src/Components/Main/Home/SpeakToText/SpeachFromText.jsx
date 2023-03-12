@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { apiService } from "../../../../Service/ApiService";
 import MicIcon from '@mui/icons-material/Mic';
 import EqGif from "./EqAnimation.gif";
@@ -15,20 +14,18 @@ import { toastsFunctions } from "../../../../helpers/toastsFunctions";
 import speakTextGoogle from "../../../../helpers/speakGoogle";
 import './SpeachFromText.css';
 import createSpeechServicesPonyfill from 'web-speech-cognitive-services';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
+const SUBSCRIPTION_KEY = process.env.REACT_APP_SUBSCRIPTION_KEY;
+const REGION = process.env.REACT_APP_REGION;
 
-
-// const SUBSCRIPTION_KEY = process.env.REACT_APP_SUBSCRIPTION_KEY;
-// const REGION = process.env.REACT_APP_REGION;
-
-// const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfill({
-//     credentials: {
-//         region: REGION,
-//         subscriptionKey: SUBSCRIPTION_KEY,
-//     }
-// });
-// SpeechRecognition.applyPolyfill(AzureSpeechRecognition);
-
+const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfill({
+    credentials: {
+        region: REGION,
+        subscriptionKey: SUBSCRIPTION_KEY,
+    }
+});
+SpeechRecognition.applyPolyfill(AzureSpeechRecognition);
 
 
 function SpeechFromText() {
@@ -43,9 +40,7 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
-   
-
-
+    
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
             return <span>Your Browser doesnt support speech to text</span>
@@ -128,7 +123,7 @@ function SpeechFromText() {
     }
 
     return (
-        <div className={authSlice.language === 'he' || authSlice.language === 'ar' ? "SpeachFromText directionRtl" : "SpeachFromText directionLtr"}>
+        <div className={authSlice.language === 'he-IL' || authSlice.language === 'ar' ? "SpeachFromText directionRtl" : "SpeachFromText directionLtr"}>
             <div className="chatDiv">
                 <div ref={chatBoxRef} className="chat">
                     {roomSlice.id == 0 ?

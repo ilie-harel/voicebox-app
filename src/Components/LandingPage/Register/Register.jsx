@@ -50,9 +50,9 @@ export default function Register() {
   }, [])
 
   const languages = [
-    { label: "English", value: "en", img: USAFlag },
-    { label: "Hebrew", value: "he", img: israelFlag },
-    { label: "France", value: "fr", img: franceFlag },
+    { label: "English", value: "en-US", img: USAFlag },
+    { label: "Hebrew", value: "he-IL", img: israelFlag },
+    { label: "France", value: "fr-FR", img: franceFlag },
     { label: "Espaniol", value: "es", img: spainFlag },
     { label: "Italian", value: "it", img: italyFlag },
     { label: "Português", value: "pt", img: brazilFlag },

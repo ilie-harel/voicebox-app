@@ -19,8 +19,6 @@ function App() {
     }
 
     setNotComputer(isMobile());
-    // const a = apiService.azure()
-    // console.log(a);
   }, [])
 
   return (
