@@ -4,9 +4,8 @@
     margin: 0 auto;
 }
 
-.HomeMobile {
-    height: 85vh;
-
+.ComponentMobile {
+    height: 90vh;
 }
 
 @media only screen and (max-width: 1000px) {

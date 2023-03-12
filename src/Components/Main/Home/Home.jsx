@@ -18,7 +18,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={notComputer? 'Home HomeMobile' : 'Home'}>
+    <div className={notComputer? 'Home ComponentMobile' : 'Home'}>
       {
         smallScreen ? 
         <RoomsSmallScreen />
