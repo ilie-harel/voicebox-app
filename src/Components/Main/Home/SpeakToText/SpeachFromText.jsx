@@ -40,7 +40,6 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
-    // const [stopped,setStopped]= useState(false)
     
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
@@ -49,8 +48,8 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
-
-    }, [finalTranscript]);
+        
+    }, [finalTranscript, listening]);
 
     useEffect(() => {
         chatBoxRef.current.scroll({
@@ -74,12 +73,15 @@ function SpeechFromText() {
         stopAudio()
     }, [roomSlice.id])
 
-    async function startListening() {
 
-            if(listening && transcript){
-                SpeechRecognition.stopListening()
+
+    async function startListening() {
+        stopAudio();
+        if(listening){
+                SpeechRecognition.stopListening();
                 return;
             }
+            
 
         if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
@@ -89,7 +91,7 @@ function SpeechFromText() {
     }
 
     async function stopListening() {
-
+        if(!finalTranscript) return;
         setIsChangedRoom(false)
         setLoading(true)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
@@ -106,6 +108,7 @@ function SpeechFromText() {
                     const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
                     console.log(mes);
                     setMessages(messages => [...messages, mes[mes.length - 1]])
+                    
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
                     setLoading(false)
