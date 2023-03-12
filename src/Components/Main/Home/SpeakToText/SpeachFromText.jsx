@@ -50,7 +50,7 @@ function SpeechFromText() {
             stopListening();
         }
 
-    }, [finalTranscript, listening]);
+    }, [finalTranscript]);
 
     useEffect(() => {
         chatBoxRef.current.scroll({
@@ -76,7 +76,7 @@ function SpeechFromText() {
 
     async function startListening() {
 
-            if(listening){
+            if(listening && transcript){
                 SpeechRecognition.stopListening()
                 return;
             }
@@ -123,11 +123,11 @@ function SpeechFromText() {
         
         if (audioSource !== null) {
             audioSource.stop();
-
-            setIsChangedRoom(!isChangedRoom)
-            setIsChangedRoom(!isChangedRoom)
-            setMessages([...messages])
         }
+ 
+            setIsChangedRoom(true)
+            setMessages([...messages])
+
         console.log(audioSource);
     }
 
@@ -211,7 +211,12 @@ function SpeechFromText() {
                             <MicIcon fontSize="large" sx={{ color: "white" }}  />
                         }
                     </div>
+
+                    {!listening ? 
                     <div className="cancel_record" onClick={() => stopAudio()}><CancelIcon fontSize="large" /></div>
+                    : 
+                    <div className="cancel_record" ><CancelIcon style={{color: "gray"}} fontSize="large" /></div>
+                    }
                 </div>
             </div>
         </div >
