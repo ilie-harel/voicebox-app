@@ -1,50 +1,53 @@
-// import { useEffect, useState } from 'react';
-// import { createSpeechServicesPonyfill } from 'web-speech-cognitive-services';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-// const SUBSCRIPTION_KEY = process.env.REACT_APP_SUBSCRIPTION_KEY;
-// const REGION = process.env.REACT_APP_REGION;
+function ArtyomC() {
+  const [spokenText, setSpokenText] = useState("");
+  const authSlice = useSelector((state)=> state.auth)
 
-// const speechRecognizer = createSpeechServicesPonyfill({
-//   credentials: {
-//     region: REGION,
-//     subscriptionKey: SUBSCRIPTION_KEY,
-//   }
-// });
+  const handleSpeechRecognition = () => {
+    const recognition = new window.webkitSpeechRecognition();
+    // recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = authSlice.language;
+    
+    recognition.onresult = (event) => {
+      let interimTranscript = "";
+      let finalTranscript = "";
 
-// function SpeechToTextAzure({ onResult }) {
-//   const [isListening, setIsListening] = useState(false);
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+        } else {
+          interimTranscript += transcript;
+        }
+      }
 
-//   const startListening = () => {
-//     setIsListening(true);
-//     speechRecognizer.SpeechRecognition.startContinuousRecognitionAsync();
-//   };
+      setSpokenText(finalTranscript);
+    };
 
-//   const stopListening = () => {
-//     setIsListening(false);
-//     speechRecognizer.SpeechRecognition.stopContinuousRecognitionAsync();
-//   };
+    recognition.onerror = (event) => {
+      console.log("Speech recognition error occurred: ", event.error);
+    };
 
-//   useEffect(() => {
-//     speechRecognizer.SpeechRecognition.recognizeOnceAsync(
-//       (result) => {
-//         if (result.text) {
-//           onResult(result.text);
-//         }
-//       },
-//       (error) => console.error(error)
-//     );
-//   }, []);
+    recognition.onend = () => {
+      console.log("Speech recognition service disconnected");
+    };
 
-//   return (
-//     <div>
-//       <button disabled={isListening} onClick={startListening}>
-//         Start
-//       </button>
-//       <button disabled={!isListening} onClick={stopListening}>
-//         Stop
-//       </button>
-//     </div>
-//   );
-// }
+    recognition.start();
+    
+    recognition.onspeechend = () => {
+      recognition.stop();
+    }
+  };
 
-// export default SpeechToTextAzure;
+  return (
+    <div>
+      <button onClick={handleSpeechRecognition}>Speak</button>
+      <div>{spokenText}</div>
+    </div>
+  );
+}
+
+export default ArtyomC;

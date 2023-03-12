@@ -5,6 +5,7 @@ import "./Main.css";
 import Home from "./Home/Home";
 import Videos from "./Videos/Videos";
 import NotFound from "../NotFound/NotFound";
+import ArtyomC from "./Home/SpeechFromTextMobile/SpeechFromTextMobile";
 
 function Main() {
 
@@ -12,6 +13,7 @@ function Main() {
         <div className="Main">
             <Routes>
                 <Route path="/" element={<Home />}></Route>
+                <Route path="/artyom" element={<ArtyomC />}></Route>
                 <Route path="/videos" element={<Videos />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
