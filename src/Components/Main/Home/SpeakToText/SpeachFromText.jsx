@@ -82,7 +82,7 @@ function SpeechFromText() {
 
     async function stopListening() {
         setIsChangedRoom(false)
-        setLoading(false)
+        setLoading(true)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
         if (roomSlice.id) {
