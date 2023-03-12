@@ -40,7 +40,6 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
-    const [messageOnTheWay, setMessageOnTheWay] = useState(false);
 
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
@@ -49,6 +48,7 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
+
     }, [finalTranscript, listening]);
 
     useEffect(() => {
@@ -73,6 +73,16 @@ function SpeechFromText() {
         stopAudio()
     }, [roomSlice.id])
 
+
+
+    async function startListening() {
+        stopAudio();
+        if(listening){
+                SpeechRecognition.stopListening();
+                return;
+            }
+            
+
     async function startListening() {
         if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
@@ -82,12 +92,12 @@ function SpeechFromText() {
     }
 
     async function stopListening() {
+        if(!finalTranscript) return;
         setIsChangedRoom(false)
         setLoading(true)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
         if (roomSlice.id) {
-            setMessageOnTheWay(true);
 
             const res = await apiService.sendMessageToChatGPT({ message: transcript, room: roomSlice.id });
             if (res.status !== 200) {
@@ -101,10 +111,10 @@ function SpeechFromText() {
                     const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
                     console.log(mes);
                     setMessages(messages => [...messages, mes[mes.length - 1]])
+                    
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
                     setLoading(false)
-                    setMessageOnTheWay(false);
 
                 } catch (e) {
                     alert(e)
@@ -196,7 +206,7 @@ function SpeechFromText() {
                     }
                 </div>
                 <div className="SpeachFromTextButtons">
-                    <div className="Start_Record" onClick={() => !messageOnTheWay && startListening()}>
+                    <div className="Start_Record" onClick={() => startListening()}>
                         {listening ?
                             <img src={EqGif} />
                             :
