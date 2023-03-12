@@ -40,7 +40,8 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
-    
+    const [messageOnTheWay, setMessageOnTheWay] = useState(false);
+
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
             return <span>Your Browser doesnt support speech to text</span>
@@ -86,6 +87,8 @@ function SpeechFromText() {
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
         if (roomSlice.id) {
+            setMessageOnTheWay(true);
+
             const res = await apiService.sendMessageToChatGPT({ message: transcript, room: roomSlice.id });
             if (res.status !== 200) {
                 toastsFunctions.toastError('Error occured')
@@ -101,6 +104,8 @@ function SpeechFromText() {
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
                     setLoading(false)
+                    setMessageOnTheWay(false);
+
                 } catch (e) {
                     alert(e)
                 }
@@ -191,7 +196,7 @@ function SpeechFromText() {
                     }
                 </div>
                 <div className="SpeachFromTextButtons">
-                    <div className="Start_Record" onClick={() => startListening()}>
+                    <div className="Start_Record" onClick={() => !messageOnTheWay && startListening()}>
                         {listening ?
                             <img src={EqGif} />
                             :
