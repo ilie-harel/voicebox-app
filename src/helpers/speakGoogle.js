@@ -16,16 +16,16 @@ export default async function speakTextGoogle(sen, setAudioSource) {
 
     if (voice) {
         const ssml = `<speak><prosody rate="1.2">${sen}</prosody></speak>`;
-        // const audioConfig = {
-        //     audioEncoding: "OGG_OPUS",
-        //     sampleRateHertz: 20000,
-        //     effectsProfileId: ["handset-class-device"],
-        // };
-
         const audioConfig = {
-            audioEncoding: "MP3",
-            speakingRate: 1.0,
-          };
+            audioEncoding: "OGG_OPUS",
+            sampleRateHertz: 20000,
+            effectsProfileId: ["handset-class-device"],
+        };
+
+        // const audioConfig = {
+        //     audioEncoding: "MP3",
+        //     speakingRate: 1.0,
+        //   };
 
         const request = {
             input: {

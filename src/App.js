@@ -23,11 +23,11 @@ function App() {
 
   return (
     <div className="App">
-      {/* {notComputer ?
+      {notComputer ?
         <>
           <WelcomeComponentMobile />
         </>
-        : */}
+        :
         <Routes>
           {
             authSlice ?
@@ -36,7 +36,7 @@ function App() {
               <Route path='*' element={<LandingPage />}></Route>
           }
         </Routes>
-      {/* } */}
+      }
 
     </div>
   );
