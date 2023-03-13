@@ -8,40 +8,41 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const authSlice = useSelector((state) => state.auth);
-  const [notAllowed, setNotAllowed] = useState(false)
+  const [notAllowed, setNotAllowed] = useState(false);
 
   useEffect(() => {
     const isSafari = () => {
       const userAgent = navigator.userAgent.toLowerCase();
-      return /safari/i.test(userAgent);
-    }
-  
+      const vendor = navigator.vendor.toLowerCase();
+      return vendor.includes('apple') && userAgent.includes('safari');
+    };
+
     const isMobile = () => {
       const userAgent = navigator.userAgent.toLowerCase();
       return /android|webos|iphone|ipad|ipod|blackberry|windows phone|iemobile|tablet|mobile/i.test(userAgent);
-    }
-  
-    if (isSafari() && isMobile()) {
+    };
+
+    if (isSafari() || isMobile()) {
       setNotAllowed(true);
     }
-  }, [])
-  
+  }, []);
+
   return (
     <div className="App">
       {notAllowed ? (
         <WelcomeComponentMobile />
       ) : (
-        // Render the Main or LandingPage component for other users
         <Routes>
           {authSlice ? (
-            <Route path='*' element={<Main />}></Route>
+            <Route path="*" element={<Main />} />
           ) : (
-            <Route path='*' element={<LandingPage />}></Route>
+            <Route path="*" element={<LandingPage />} />
           )}
         </Routes>
       )}
     </div>
   );
 }
+
 
 export default App;
