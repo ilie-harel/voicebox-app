@@ -13,21 +13,21 @@ function App() {
   const [notComputer, setNotComputer] = useState(false)
 
   useEffect(() => {
-    const isMobile = () => {
+    const isMobileSafari = () => {
       const userAgent = navigator.userAgent.toLowerCase();
-      return /android|webos|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
+      return /safari/i.test(userAgent) && /mobile|iphone|ipad|ipod/i.test(userAgent);
     }
-
-    setNotComputer(isMobile());
+  
+    setNotComputer(isMobileSafari());
   }, [])
-
+  
   return (
     <div className="App">
-      {/* {notComputer ? */}
-        {/* <> */}
-          {/* <WelcomeComponentMobile /> */}
-        {/* </> */}
-        {/* : */}
+      {notComputer ?
+        <>
+          <WelcomeComponentMobile />
+        </>
+        :
         <Routes>
           {
             authSlice ?
@@ -36,7 +36,7 @@ function App() {
               <Route path='*' element={<LandingPage />}></Route>
           }
         </Routes>
-      {/* } */}
+      } 
 
     </div>
   );
