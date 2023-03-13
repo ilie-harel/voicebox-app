@@ -11,10 +11,18 @@ function App() {
   const [notAllowed, setNotAllowed] = useState(false);
 
   useEffect(() => {
-    const isSafari = () => {
+    // const isSafari = () => {
+    //   const userAgent = navigator.userAgent.toLowerCase();
+    //   const vendor = navigator.vendor.toLowerCase();
+    //   return vendor.includes('apple') && userAgent.includes('safari');
+    // };
+
+    
+    const isSafariT = () => {
       const userAgent = navigator.userAgent.toLowerCase();
       const vendor = navigator.vendor.toLowerCase();
-      return vendor.includes('apple') && userAgent.includes('safari');
+      console.log('s',vendor.includes('apple') && /safari/i.test(userAgent) && !/chrome/i.test(userAgent));
+      return vendor.includes('apple') && /safari/i.test(userAgent) && !/chrome/i.test(userAgent);
     };
 
     const isMobile = () => {
@@ -22,9 +30,10 @@ function App() {
       return /android|webos|iphone|ipad|ipod|blackberry|windows phone|iemobile|tablet|mobile/i.test(userAgent);
     };
 
-    if (isSafari() || isMobile()) {
+    if (isSafariT() || isMobile()) {
       setNotAllowed(true);
     }
+
   }, []);
 
   return (
