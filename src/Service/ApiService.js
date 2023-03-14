@@ -3,7 +3,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 
 function getToken() {
     const token = localStorage.getItem('ChatBoxToken');
-    console.log(token)
     return token
 }
 class ApiService {
@@ -50,9 +49,6 @@ class ApiService {
     // messages
 
     sendMessageToChatGPT(message) {
-
-
-        console.log(message);
         const token = getToken()
         const results = fetch(`${BASE_URL}/message`, {
             method: 'POST',
@@ -134,7 +130,6 @@ class ApiService {
                 'accept-charset': 'utf-8'
             },
         })
-        console.log(results);
     }
 
 
@@ -161,35 +156,6 @@ class ApiService {
         });
         return await response.json()
     }
-
-    // azure test
-
-    // async azure() {
-    //     const subscriptionKey = '2d02f930d467482688cf41aa421a07b9';
-    //     const region = 'eastus';
-
-    //     const url = `https://${region}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`;
-
-    //     fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Ocp-Apim-Subscription-Key': subscriptionKey,
-    //             'Content-type': 'application/x-www-form-urlencoded',
-    //         },
-    //     })
-    //         .then(response => {
-    //             if (response.ok) {
-    //                 console.log('Subscription key is valid.');
-    //             } else {
-    //                 console.log('Subscription key is not valid.');
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.error('Error validating subscription key:', error);
-    //         });
-
-    // }
-    
 
 }
 

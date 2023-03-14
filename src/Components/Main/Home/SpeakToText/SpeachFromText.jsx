@@ -111,7 +111,6 @@ function SpeechFromText() {
                 resetTranscript();
                 try {
                     const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
-                    console.log(mes);
                     setMessages(messages => [...messages, mes[mes.length - 1]])
                     
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
@@ -123,7 +122,6 @@ function SpeechFromText() {
             }
         } else {
             setIsChangedRoom(false)
-            console.log('No roomId');
         }
         setDisableSpeak(false);
     }

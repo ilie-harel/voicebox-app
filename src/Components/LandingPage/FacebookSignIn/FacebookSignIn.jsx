@@ -26,7 +26,6 @@ export default function FacebookSignIn() {
             // const res = await apiService.googleAuth(user,notComputer);
             const res = await apiService.googleAuth(user);
             if (res.status === 200) {
-                console.log(res);
                 dispatch(loginRedux(res.data))
                 if (!notComputer) {
                     toastsFunctions.toastInfo("Head to the settings to choose a different language");
@@ -39,18 +38,14 @@ export default function FacebookSignIn() {
     }
 
     async function onSuccessFunction(response) {
-        console.log('Login Success!', response);
         const fields = 'id,name,email';
         fetch(`https://graph.facebook.com/me?fields=${fields}&access_token=${response.accessToken}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 const fullName = data.name;
                 const names = fullName.split(' ');
                 const firstName = names[0];
                 const lastName = names[names.length - 1];
-                console.log(firstName);
-                console.log(lastName);
 
                 const facebookUser = {
                     firstName: firstName,
@@ -58,7 +53,6 @@ export default function FacebookSignIn() {
                     email: data.email,
                     language: 'en',
                 }
-                console.log(facebookUser);
                 userRegister(facebookUser)
             })
             .catch(error => {

@@ -30,7 +30,6 @@ const GoogleRegister = () => {
             // const res = await apiService.googleAuth(user,notComputer);
             const res = await apiService.googleAuth(user);
             if (res.status === 200) {
-                console.log(res);
                 dispatch(loginRedux(res.data))
                 if (!notComputer) {
                     toastsFunctions.toastInfo("Head to the settings to choose a different language");
