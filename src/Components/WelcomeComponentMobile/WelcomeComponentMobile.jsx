@@ -16,13 +16,12 @@ export default function WelcomeComponentMobile() {
       </div>
       <div className='WelcomeComponentMobilePhone'>
         <TypeAnimation
-          sequence={['We are currently working on bringing Voice Box AI to your phone and Safari browser. In the meantime, you can try it out from any other platform.']}
+          sequence={['We are currently working on bringing Voice Box AI to mobile devices and other browsers. In the meantime, you can try it out on Chrome for desktop.']}
           wrapper="p"
           cursor={true}
           speed={50}
           className={'signInAnimation'}
         />
-        {/* <p>We are currently working on bringing Voice Box AI to your phone. In the meantime, you can try it out on your computer.</p> */}
       </div>
       <div className='PhoneNotifyComponentDiv'>
         <PhoneNotify />
